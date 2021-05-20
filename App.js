@@ -13,6 +13,7 @@ import DemoFlatlist from './src/components/Buoi7/DemoFlatlist'
 import DemoSectionlist from './src/components/Buoi7/DemoSectionlist'
 import BaiTapOanTuXi from './src/components/Buoi8/index'
 import Buoi9Reducer from './src/components/Buoi9Redux/index'
+import GameS_P_R from './src/components/Buoi9Redux/GameS_P_R'
 import { Provider } from 'react-redux'
 import store from './src/components/Buoi9Redux/redux/store';
 // class App extends Component{
@@ -34,7 +35,7 @@ import store from './src/components/Buoi9Redux/redux/store';
 
 const App = () => (
   <Provider store={store}>
-    <Buoi9Reducer />
+    <GameS_P_R />
   </Provider>
 )
 

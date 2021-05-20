@@ -1,7 +1,12 @@
+import { connect } from 'react-redux';
+import PlayerItem from './PlayerItem'
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { ImageBackground, Image, StyleSheet, Text, View, SafeAreaView, StatusBar, TouchableOpacity } from 'react-native'
+import { BackgroundGame, Paper, Player, Bot, Rock, Scissor } from './../../assets/index'
+import AntDesign from '../../assets/Icons/index'
+import LinearGradient from 'react-native-linear-gradient'
 
-export default class GameS_P_R extends Component {
+class GameS_P_R extends Component {
     render() {
         //sort-down
         return (
@@ -10,27 +15,15 @@ export default class GameS_P_R extends Component {
                 <View style={styles.overlay}>
                     <SafeAreaView style={{ flex: 1 }}>
                         <View style={styles.playerContent}>
-                            <View style={{ alignItems: 'center' }}>
-                                <View style={styles.borderItem}>
-                                    <Image style={styles.gameIcon} source={Paper}></Image>
-                                </View>
-                                <View style={styles.triangle}></View>
-                                <Image style={styles.playerIcon} source={Player}></Image>
-                            </View>
-                            <View style={{ alignItems: 'center' }}>
-                                <View style={[styles.borderItem]}>
-                                    <Image style={styles.gameIcon} source={Rock}></Image>
-                                </View>
-                                <View style={styles.triangle}></View>
-                                <Image style={styles.playerIcon} source={Bot}></Image>
-                            </View>
+                            <PlayerItem player={this.props.realPlayer} avatar={Player}></PlayerItem>
+                            <PlayerItem player={this.props.botPlayer} avatar={Bot}></PlayerItem>
+
                         </View>
                         <View style={styles.playerContent}>
-
-                        <SelectContent imageArray={this.state.arrayItem}></SelectContent>
+                            {/* <SelectContent imageArray={this.state.arrayItem}></SelectContent> */}
                         </View>
                         <View style={styles.playArea}>
-                           
+
                             <View style={{ flex: 1 }}>
                                 <Text style={styles.infoText}>Score: 9</Text>
                                 <Text style={styles.infoText}>Times: 0</Text>
@@ -117,23 +110,7 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
     },
-    playerIcon: {
-        width: 90,
-        height: 90,
-    },
-    triangle: {
-        width: 0,
-        height: 0,
-        backgroundColor: "transparent",
-        borderStyle: "solid",
-        borderLeftWidth: 7,
-        borderRightWidth: 7,
-        borderTopWidth: 10,
-        borderLeftColor: "transparent",
-        borderRightColor: "transparent",
-        borderTopColor: "yellow",
-        // transform:[{rotate:'180deg'}]
-    },
+
     infoText: {
         color: '#00fecd',
         fontSize: 30,
@@ -160,3 +137,11 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
 });
+
+const mapStateToProps = state => ({
+    realPlayer: state.gameReducer.realPlayer,
+    botPlayer:state.gameReducer.botPlayer,
+    arrayItem:state.gameReducer.arrayItem
+});
+
+export default connect(mapStateToProps)(GameS_P_R);
