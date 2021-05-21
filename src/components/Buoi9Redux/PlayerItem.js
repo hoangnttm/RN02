@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { StyleSheet,Image, Text, View } from 'react-native'
-import { Player } from '../../assets';
 
 export default class PlayerItem extends Component {
     render() {
@@ -44,5 +43,8 @@ const styles=StyleSheet.create({
         width: 90,
         height: 90,
     },
-    
+    gameIcon: {
+        width: 80,
+        height: 80,
+    },
 })
